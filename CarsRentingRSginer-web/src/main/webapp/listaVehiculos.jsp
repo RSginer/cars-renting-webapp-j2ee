@@ -1,4 +1,5 @@
 
+<%@page import="com.rsginer.carsrenting.domain.FichaTecnica"%>
 <%@page import="com.rsginer.carsrenting.domain.Vehiculo"%>
 <%@page import="java.util.List"%>
 <%@page import="com.rsginer.carsrenting.domain.Categoria"%>
@@ -26,6 +27,7 @@
                 <th>Kilometros</th>
                 <th>Modelo</th>
                 <th>Categoria</th>
+                <th>Ficha técnica</th>
             </tr>
             <%
                 ArrayList<Vehiculo> listaVehiculos = (ArrayList<Vehiculo>) session.getAttribute("listaVehiculos");
@@ -40,7 +42,26 @@
                 <td><%=vehiculo.getMarca()%></td>
                 <td><%=vehiculo.getKilometros()%></td>
                 <td><%=vehiculo.getModelo()%></td>
-                <td><%=vehiculo.getCategoria().getDescripcion()%></td>
+                <td><%=vehiculo.getCategoria().getDescripcion()%></td>         
+                <td>
+                    <table>
+                        <%
+                            FichaTecnica fichaTecnica = vehiculo.getFichaTecnica();
+                        %>
+                        <tr>
+                        <th>id</th>
+                        <th>propietario</th>
+                        <th>fecha_itv</th>
+                        <th>observaciones</th>
+                        </tr>
+                        <tr>
+                            <td><%=fichaTecnica.getId()%></td>
+                            <td><%=fichaTecnica.getPropietario()%></td>
+                            <td><%=fichaTecnica.getFechaItv().toString()%></td>
+                            <td><%=fichaTecnica.getObservaciones()%></td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
             <%}%>
         </table>

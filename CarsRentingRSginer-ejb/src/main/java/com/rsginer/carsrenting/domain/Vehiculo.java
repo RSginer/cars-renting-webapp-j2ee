@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -52,8 +53,12 @@ public class Vehiculo {
     @ManyToOne
     @JoinColumn(name="categoria")
     private Categoria categoria;
+    
+    @OneToOne
+    @JoinColumn(name = "ficha_tecnica")
+    private FichaTecnica fichaTecnica;
 
-    public Vehiculo(int id, String bastidor, String matricula, String marca, String kilometros, String modelo, Categoria categoria) {
+    public Vehiculo(int id, String bastidor, String matricula, String marca, String kilometros, String modelo, Categoria categoria, FichaTecnica fichaTecnica) {
         this.id = id;
         this.bastidor = bastidor;
         this.matricula = matricula;
@@ -61,9 +66,18 @@ public class Vehiculo {
         this.kilometros = kilometros;
         this.modelo = modelo;
         this.categoria = categoria;
+        this.fichaTecnica = fichaTecnica;
     }
 
     public Vehiculo() {
+    }
+
+    public FichaTecnica getFichaTecnica() {
+        return fichaTecnica;
+    }
+
+    public void setFichaTecnica(FichaTecnica fichaTecnica) {
+        this.fichaTecnica = fichaTecnica;
     }
     
     
