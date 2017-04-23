@@ -6,7 +6,7 @@
 package com.rsginer.carsrenting.servlets;
 
 import com.rsginer.carsrenting.domain.Categoria;
-import com.rsginer.carsrenting.service.CategoriasServiceLocal;
+import com.rsginer.carsrenting.service.VehiculosServiceLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -21,15 +21,15 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author alumno
+ * @author Rubén
  */
-@WebServlet(name = "CategoriasController",
+@WebServlet(name = "VehiculosController",
         loadOnStartup = 1,
-        urlPatterns = {"/listaCategorias"})
-public class CategoriasController extends HttpServlet {
+        urlPatterns = {"/listaVehiculos"})
+public class VehiculosController extends HttpServlet {
 
     @EJB
-    private CategoriasServiceLocal categoriasService;
+    private VehiculosServiceLocal vehiculosService;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,23 +42,22 @@ public class CategoriasController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userPath = request.getServletPath();
+         String userPath = request.getServletPath();
         switch (userPath) {
-            case "/listaCategorias":
-                listarCategorias(request, response);
+            case "/listaVehiculos":
+                listarVehiculos(request, response);
                 break;
             default:
                 break;
         }
     }
-
-    private void listarCategorias(HttpServletRequest request, HttpServletResponse response) {
-        try {
-            
-            List lista = this.categoriasService.listaCategorias();
-            ArrayList<Categoria> listaCategorias = new ArrayList<>(lista);
-             request.getSession().setAttribute("listaCategorias", listaCategorias);
-             RequestDispatcher rd = request.getRequestDispatcher("/listaCategorias.jsp");
+    
+    private void listarVehiculos(HttpServletRequest request, HttpServletResponse response) {
+           try {
+            List lista = this.vehiculosService.listaVehiculos();
+            ArrayList<Categoria> listaVehiculos = new ArrayList<>(lista);
+             request.getSession().setAttribute("listaVehiculos", listaVehiculos);
+             RequestDispatcher rd = request.getRequestDispatcher("/listaVehiculos.jsp");
              rd.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();

@@ -4,10 +4,19 @@
         <servlet-name>CategoriasController</servlet-name>
         <servlet-class>com.rsginer.carsrenting.servlets.CategoriasController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VehiculosController</servlet-name>
+        <servlet-class>com.rsginer.carsrenting.servlets.VehiculosController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CategoriasController</servlet-name>
         <url-pattern>/CategoriasController</url-pattern>
-         <url-pattern>/listaCategorias</url-pattern>
+        <url-pattern>/listaCategorias</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VehiculosController</servlet-name>
+        <url-pattern>/VehiculosController</url-pattern>
+        <url-pattern>/listaVehiculos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
