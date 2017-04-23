@@ -11,10 +11,9 @@
         <title>Listado Vehiculos</title>
     </head>
     <body>
-
         <h1>Listado de Vehiculos</h1>
         <h2></h2>
-        <a href="addVehiculo.jsp">Agregar Vehiculo</a>
+        <a href="nuevoVehiculo">Agregar Vehiculo</a>
         <br/>
         <br/>
 

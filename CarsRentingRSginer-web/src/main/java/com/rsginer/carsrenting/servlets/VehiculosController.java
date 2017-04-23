@@ -6,6 +6,7 @@
 package com.rsginer.carsrenting.servlets;
 
 import com.rsginer.carsrenting.domain.Categoria;
+import com.rsginer.carsrenting.service.CategoriasServiceLocal;
 import com.rsginer.carsrenting.service.VehiculosServiceLocal;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,8 +26,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "VehiculosController",
         loadOnStartup = 1,
-        urlPatterns = {"/listaVehiculos"})
+        urlPatterns = {"/listaVehiculos","/nuevoVehiculo"})
 public class VehiculosController extends HttpServlet {
+
+    @EJB
+    private CategoriasServiceLocal categoriasService;
 
     @EJB
     private VehiculosServiceLocal vehiculosService;
@@ -47,6 +51,8 @@ public class VehiculosController extends HttpServlet {
             case "/listaVehiculos":
                 listarVehiculos(request, response);
                 break;
+            case "/nuevoVehiculo":
+                mostrarFormularioVehiculo(request, response);
             default:
                 break;
         }
@@ -58,6 +64,18 @@ public class VehiculosController extends HttpServlet {
             ArrayList<Categoria> listaVehiculos = new ArrayList<>(lista);
              request.getSession().setAttribute("listaVehiculos", listaVehiculos);
              RequestDispatcher rd = request.getRequestDispatcher("/listaVehiculos.jsp");
+             rd.forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+        private void mostrarFormularioVehiculo(HttpServletRequest request, HttpServletResponse response) {
+           try {
+            List lista = this.categoriasService.listaCategorias();
+            ArrayList<Categoria> listaCategorias = new ArrayList<>(lista);
+             request.getSession().setAttribute("listaCategorias", listaCategorias);
+             RequestDispatcher rd = request.getRequestDispatcher("/detalleVehiculo.jsp?accion=nuevo");
              rd.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();

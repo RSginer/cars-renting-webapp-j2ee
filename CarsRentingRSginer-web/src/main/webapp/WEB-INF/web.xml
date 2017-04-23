@@ -17,6 +17,7 @@
         <servlet-name>VehiculosController</servlet-name>
         <url-pattern>/VehiculosController</url-pattern>
         <url-pattern>/listaVehiculos</url-pattern>
+        <url-pattern>/nuevoVehiculo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
