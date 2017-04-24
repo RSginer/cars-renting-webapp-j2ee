@@ -16,7 +16,6 @@
         <a href="nuevoVehiculo">Agregar Vehiculo</a>
         <br/>
         <br/>
-
         <table border="1">
             <tr>
                 <th>Id</th>
